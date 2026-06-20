@@ -15,6 +15,7 @@ public class FactionGUI {
         ItemStack wardens = new ItemStack(Material.BLUE_BANNER);
         ItemMeta wardensMeta = wardens.getItemMeta();
         wardensMeta.setDisplayName("§9Вардены");
+        wardens.setItemMeta(wardensMeta);
 
         ItemStack colonials = new ItemStack(Material.GREEN_BANNER);
         ItemMeta colonialsMeta = colonials.getItemMeta();

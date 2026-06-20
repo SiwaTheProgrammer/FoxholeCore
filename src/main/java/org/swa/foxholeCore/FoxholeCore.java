@@ -48,6 +48,10 @@ public final class FoxholeCore extends JavaPlugin {
                 this
         );
 
+        getServer().getPluginManager().registerEvents(
+                new ChatListener(chatManager,factionManager),this
+        );
+
         getCommand("factionChat").setExecutor(new FactionChatCommand(chatManager));
     }
 

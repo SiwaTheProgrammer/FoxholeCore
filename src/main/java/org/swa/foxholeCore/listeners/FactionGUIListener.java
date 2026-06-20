@@ -42,7 +42,7 @@ public class FactionGUIListener implements Listener {
                 player.closeInventory();
 
                 player.sendTitle(
-                        "§6Варден",
+                        "§9Варден",
                         "§fДобро пожаловать на службу",
                         10,
                         70,
