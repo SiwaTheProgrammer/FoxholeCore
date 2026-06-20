@@ -1,0 +1,16 @@
+name: FoxholeCore
+version: '${version}'
+
+main: org.swa.foxholeCore.FoxholeCore
+api-version: '1.21.11'
+load: POSTWORLD
+
+depend:
+  - LuckPerms
+
+softdepend: [DiscordSRV]
+
+commands:
+  factionChat:
+    description: Switch chat mode
+    usage: /f

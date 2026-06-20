@@ -1,0 +1,12 @@
+spawns:
+  wardens:
+    world: world
+    x: 0
+    y: 100
+    z: -4500
+
+  colonials:
+    world: world
+    x: 0
+    y: 100
+    z: 4500
