@@ -2,6 +2,7 @@ package org.swa.foxholeCore.factions;
 
 import org.swa.foxholeCore.database.DatabaseManager;
 
+import java.awt.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -63,5 +64,29 @@ public class FactionManager {
 
     public boolean hasFaction(UUID uuid) {
         return factions.containsKey(uuid);
+    }
+
+    public Color getFactionJColor(Faction faction) {
+        return switch (faction) {
+            case COLONIALS -> Color.GREEN;
+            case WARDENS -> Color.BLUE;
+            case null -> null;
+        };
+    }
+
+    public Color getPlayerJColor(UUID uuid) {
+        return getFactionJColor(factions.get(uuid));
+    }
+
+    public String getFactionMColor(Faction faction) {
+        return switch (faction) {
+            case COLONIALS -> "§2";
+            case WARDENS -> "§9";
+            case null -> null;
+        };
+    }
+
+    public String getPlayerMColor(UUID uuid) {
+        return getFactionMColor(factions.get(uuid));
     }
 }

@@ -52,7 +52,7 @@ public class ChatListener implements Listener {
 
                 TextChannel channel = DiscordSRV.getPlugin().getJda().getTextChannelById("1517897002619375757");
 
-                EmbedBuilder embed = new EmbedBuilder().setColor(Color.ORANGE).
+                EmbedBuilder embed = new EmbedBuilder().setColor(factionManager.getPlayerJColor(player.getUniqueId())).
                         setAuthor(player.getName() + " (" + factionManager.getFaction(player.getUniqueId()).name().toLowerCase()+ ")", null, "https://minotar.net/avatar/"+player.getName()+"/128")
                         .setDescription(msg);
 
@@ -65,19 +65,24 @@ public class ChatListener implements Listener {
     }
 
     private void sendLocal(Player sender, String msg) {
+
+        Faction faction = factionManager.getFaction(sender.getUniqueId());
+        String color = factionManager.getFactionMColor(faction);
+
         for (Player p : Bukkit.getOnlinePlayers()) {
             if (!p.getWorld().equals(sender.getWorld()))
                 continue;
             if (p.getLocation().distance(sender.getLocation()) > 100)
                 continue;
 
-            p.sendMessage("§7[L] §f" + sender.getName() + ": §f" + msg);
+            p.sendMessage("§7[L] " + color + sender.getName() +" ["+ faction.name()+ "]: §f" + msg);
         }
     }
 
     private void sendFaction(Player sender, String msg) {
 
         Faction faction = factionManager.getFaction(sender.getUniqueId());
+        String color = factionManager.getFactionMColor(faction);
 
         if (faction == null) {
             sender.sendMessage("Вы не находитесь в фракции");
@@ -86,19 +91,23 @@ public class ChatListener implements Listener {
         for (Player p : Bukkit.getOnlinePlayers()) {
             Faction targetFaction = factionManager.getFaction(p.getUniqueId());
 
+
             if (targetFaction == null)
                 continue;
             if (faction != targetFaction)
                 continue;
 
-            p.sendMessage("§6[F] §f" + sender.getName() + ": §7" + msg);
+            p.sendMessage("§6[F] " + color + sender.getName() + ": " + msg);
         }
     }
 
     private void sendGlobal(Player sender, String msg) {
 
+        Faction faction = factionManager.getFaction(sender.getUniqueId());
+        String color = factionManager.getFactionMColor(faction);
+
         for (Player p : Bukkit.getOnlinePlayers()) {
-            p.sendMessage("§e[G] §f" + sender.getName() + ": §7" + msg);
+            p.sendMessage("§e[G] §f"  + color + sender.getName() + " [" + faction.name() + "] : §7" + msg);
         }
     }
 }
