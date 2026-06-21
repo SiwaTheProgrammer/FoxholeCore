@@ -1,5 +1,6 @@
 package org.swa.foxholeCore.listeners;
 
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -18,8 +19,12 @@ public class JoinListener implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
-        if (!factionManager.hasFaction(event.getPlayer().getUniqueId())) {
-            factionGUI.open(event.getPlayer());
-        }
+
+        Player player = event.getPlayer();
+
+        factionManager.loadPlayer(player.getUniqueId());
+
+        if (!factionManager.hasFaction(player.getUniqueId()))
+            factionGUI.open(player);
     }
 }

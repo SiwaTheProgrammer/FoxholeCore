@@ -4,6 +4,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.swa.foxholeCore.GUI.FactionGUI;
 import org.swa.foxholeCore.chat.ChatManager;
 import org.swa.foxholeCore.command.FactionChatCommand;
+import org.swa.foxholeCore.database.DatabaseManager;
 import org.swa.foxholeCore.factions.FactionManager;
 import org.swa.foxholeCore.spawn.SpawnManager;
 import org.swa.foxholeCore.listeners.*;
@@ -18,11 +19,14 @@ public final class FoxholeCore extends JavaPlugin {
 
         saveDefaultConfig();
 
-        FactionManager factionManager = new FactionManager();
+        // Initializing managers
+        DatabaseManager databaseManager = new DatabaseManager();
+        FactionManager factionManager = new FactionManager(databaseManager);
         FactionGUI factionGUI = new FactionGUI();
         SpawnManager spawnManager = new SpawnManager(this);
         ChatManager chatManager = new ChatManager();
 
+        // Initializing listeners
         getServer().getPluginManager().registerEvents(
                 new JoinListener(factionManager, factionGUI),
                 this
@@ -52,6 +56,7 @@ public final class FoxholeCore extends JavaPlugin {
                 new ChatListener(chatManager,factionManager),this
         );
 
+        // initializing commands
         getCommand("factionChat").setExecutor(new FactionChatCommand(chatManager));
     }
 
