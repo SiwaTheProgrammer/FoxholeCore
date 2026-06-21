@@ -53,9 +53,8 @@ public class ChatListener implements Listener {
                 TextChannel channel = DiscordSRV.getPlugin().getJda().getTextChannelById("1517897002619375757");
 
                 EmbedBuilder embed = new EmbedBuilder().setColor(Color.ORANGE).
-                        setTitle(player.getName()+" ("+factionManager.getFaction(player.getUniqueId()).name()+")")
-                        .setDescription(msg).
-                        setThumbnail("https://crafatar.com/avatars/" + player.getUniqueId());
+                        setAuthor(player.getName() + " (" + factionManager.getFaction(player.getUniqueId()).name().toLowerCase()+ ")", null, "https://minotar.net/avatar/"+player.getName()+"/128")
+                        .setDescription(msg);
 
                 if (channel != null) {
                     channel.sendMessageEmbeds(embed.build()).queue();

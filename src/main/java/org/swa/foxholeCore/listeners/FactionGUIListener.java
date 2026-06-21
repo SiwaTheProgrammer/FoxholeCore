@@ -1,5 +1,6 @@
 package org.swa.foxholeCore.listeners;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -35,6 +36,8 @@ public class FactionGUIListener implements Listener {
         switch (event.getSlot()) {
             case 11 -> {
                 factionManager.setFaction(player.getUniqueId(), Faction.WARDENS);
+                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user "+ player.getName() + " parent add wardens");
+
 
                 spawnManager.teleportToWardenSpawn(player);
 
@@ -52,6 +55,7 @@ public class FactionGUIListener implements Listener {
 
             case 15 -> {
                 factionManager.setFaction(player.getUniqueId(), Faction.COLONIALS);
+                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user "+ player.getName() + " parent add colonists");
 
                 spawnManager.teleportToColonialSpawn(player);
 
