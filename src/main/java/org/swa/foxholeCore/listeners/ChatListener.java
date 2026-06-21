@@ -1,6 +1,7 @@
 package org.swa.foxholeCore.listeners;
 
 import github.scarsz.discordsrv.DiscordSRV;
+import github.scarsz.discordsrv.dependencies.jda.api.EmbedBuilder;
 import github.scarsz.discordsrv.dependencies.jda.api.entities.TextChannel;
 import io.papermc.paper.event.player.AsyncChatEvent;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
@@ -49,8 +50,10 @@ public class ChatListener implements Listener {
 
                 TextChannel channel = DiscordSRV.getPlugin().getJda().getTextChannelById("1517897002619375757");
 
+                EmbedBuilder embed = new EmbedBuilder().setAuthor(player.getName()).setDescription(msg).setFooter("Global Chat");
+
                 if (channel != null) {
-                    channel.sendMessage("[GLOBAL] " + player.getName() + ": " + msg).queue();
+                    channel.sendMessageEmbeds(embed.build()).queue();
                 }
             }
 
