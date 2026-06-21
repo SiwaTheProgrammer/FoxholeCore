@@ -21,6 +21,7 @@ public final class FoxholeCore extends JavaPlugin {
 
         // Initializing managers
         DatabaseManager databaseManager = new DatabaseManager();
+        databaseManager.connect();
         FactionManager factionManager = new FactionManager(databaseManager);
         FactionGUI factionGUI = new FactionGUI();
         SpawnManager spawnManager = new SpawnManager(this);
