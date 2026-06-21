@@ -14,6 +14,8 @@ import org.swa.foxholeCore.chat.ChatMode;
 import org.swa.foxholeCore.factions.Faction;
 import org.swa.foxholeCore.factions.FactionManager;
 
+import java.awt.*;
+
 public class ChatListener implements Listener {
     private final ChatManager chatManager;
     private final FactionManager factionManager;
@@ -50,7 +52,7 @@ public class ChatListener implements Listener {
 
                 TextChannel channel = DiscordSRV.getPlugin().getJda().getTextChannelById("1517897002619375757");
 
-                EmbedBuilder embed = new EmbedBuilder().setAuthor(player.getName(), null, "https://crafatar.com/avatars/"+player.getUniqueId())
+                EmbedBuilder embed = new EmbedBuilder().setColor(Color.ORANGE).setAuthor(player.getName(), null, "https://crafatar.com/avatars/"+player.getUniqueId())
                         .setDescription(msg);
 
                 if (channel != null) {
