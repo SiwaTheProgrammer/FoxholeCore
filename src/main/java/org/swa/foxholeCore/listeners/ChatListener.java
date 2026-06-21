@@ -50,7 +50,8 @@ public class ChatListener implements Listener {
 
                 TextChannel channel = DiscordSRV.getPlugin().getJda().getTextChannelById("1517897002619375757");
 
-                EmbedBuilder embed = new EmbedBuilder().setAuthor(player.getName()).setDescription(msg).setFooter("Global Chat");
+                EmbedBuilder embed = new EmbedBuilder().setAuthor(player.getName(), null, "https://crafatar.com/avatars/"+player.getUniqueId())
+                        .setDescription(msg);
 
                 if (channel != null) {
                     channel.sendMessageEmbeds(embed.build()).queue();
